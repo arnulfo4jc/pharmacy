@@ -3,9 +3,9 @@ class BootStrap {
     def init = { servletContext ->
 
       def user1 = new org.mt.User(
-            username:'arnulfo4jc@gmail.com',
+            username:'me@gmail.com',
             password:'123',
-            email:"arnulfo4jc@gmail.com",
+            email:"me@gmail.com",
             fullName:"Arnulfo Rolando Blandon",
             enabled:true,
             accountExpired:false,

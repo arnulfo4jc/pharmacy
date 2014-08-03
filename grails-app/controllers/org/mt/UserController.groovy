@@ -136,7 +136,6 @@ class UserController {
                     redirect (action:"changePassword", params:[typeMess:"info"])
                     return
                 }
-
             } else {
                 flash.message = "Ingrese su contraseña actual correctamente!!"
                 redirect action:"changePassword"
