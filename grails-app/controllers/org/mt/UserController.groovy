@@ -12,6 +12,9 @@ class UserController {
         update:"PUT"
     ]
 
+    def springSecurityService
+    def passwordEncoder
+
     def index() { }
 
     def beforeInterceptor = [action: this.&passwordTest, only: 'create']
@@ -106,6 +109,54 @@ class UserController {
             userInstance.delete()
             flash.message = "El usuario: ${userInstance.username}  fue eliminado del la aplicación"
             redirect(action:"list", params:[typeMess:"info"])
+        }
+    }
+
+    def changePassword(){
+        def userInstance = springSecurityService.currentUser
+        [userInstance:userInstance]
+    }
+
+    def updatePassword(passwordChangeCommand cmd){
+            def userInstance = springSecurityService.currentUser
+            String currentPassword = cmd.currentPassword
+            String password = params.password
+            String confirmPassword = params.confirmPassword
+
+            if (cmd.hasErrors()) {
+                flash.message = "Hubo errores en la operaccion de cambiar contraseña"
+                redirect (action:"changePassword")
+                return
+            }
+
+            if (passwordEncoder.isPasswordValid(userInstance.password, currentPassword, null)) {
+                userInstance.properties["password"] = params
+                if (userInstance.save(flush:true)) {
+                    flash.message = "Su contraseña fue cambiada exitosamente"
+                    redirect (action:"changePassword", params:[typeMess:"info"])
+                    return
+                }
+
+            } else {
+                flash.message = "Ingrese su contraseña actual correctamente!!"
+                redirect action:"changePassword"
+                return
+            }
+
+        }
+}
+
+class passwordChangeCommand {
+    def springSecurityService
+
+    String currentPassword
+    String password
+    String confirmPassword
+
+    static constraints = {
+        currentPassword blank:false
+        password validator:{ val, obj ->
+        val == obj.confirmPassword
         }
     }
 }

@@ -8,10 +8,12 @@
 </head>
 <body>
 	<div class="container">
+	<br><br>
 		<div class="row">
 			<div class="col-md-4 col-md-offset-2">
-				<h1>KUSH</h1>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, quisquam, impedit voluptatem autem est quasi sunt repellat iure repudiandae nemo sapiente ipsam nihil officiis. Expedita, nisi modi impedit laborum. Qui.
+				<h1>Farmacia SB</h1>
+				<hr>
+				<p>Mina el Limon</p>
 			</div>
 			<div class="col-md-4">
 				<g:layoutBody/>

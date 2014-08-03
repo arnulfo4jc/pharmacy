@@ -22,24 +22,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <img class="logb2nav pull-left" src="${resource(dir: 'images', file: 'logob2.png')}" alt="B2GOLD"/>
-	      	<a class="navbar-brand" href="#">Personal Mantenimiento</a>
+               	<a class="navbar-brand" href="#">Farmacia SB</a>
 	  	</div>
         <nav role="navigation" class="navbar-collapse bs-navbar-collapse collapse" style="height: 1px;">
   	  		<ul class="nav navbar-nav navbar-right">
   	  		<li class="dropdown ${(controllerName == 'fee' && actionName != 'show') ? 'active' : ''}">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Personal <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrar<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
-                  	<g:link controller="employe" action="list">
+                  	<g:link controller="user" action="list">
                   		<span class="glyphicon glyphicon-list"></span>
-                  		Lista Empleado
+                  		Lista Usuarios
                   	</g:link>
                   </li>
                   <li>
-                  	<g:link controller="employe" action="create">
+                  	<g:link controller="user" action="create">
                   		<span class="glyphicon glyphicon-save"></span>
-                  		Agregar Empleados
+                  		Agregar Usuario
                   	</g:link>
                   </li>
                 </ul>
@@ -52,9 +51,9 @@
 			        <b class="caret"></b></a>
 				    <ul class="dropdown-menu">
 				        <li>
-					        <g:link controller="user" action="profile">
+					        <g:link controller="user" action="changePassword">
 					        	<span class="glyphicon glyphicon-user"></span>
-					        	Perfil
+					        	Cambiar contraseña
 					        </g:link>
 					    </li>
 					    <li>
