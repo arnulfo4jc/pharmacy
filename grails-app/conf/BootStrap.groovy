@@ -6,7 +6,7 @@ class BootStrap {
             username:'me@gmail.com',
             password:'123',
             email:"me@gmail.com",
-            fullName:"Arnulfo Rolando Blandon",
+            fullName:"Jamileth Alvarez",
             enabled:true,
             accountExpired:false,
             accountLocked:false,
