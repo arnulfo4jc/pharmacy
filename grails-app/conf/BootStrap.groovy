@@ -1,5 +1,6 @@
-class BootStrap {
+import org.mt.*
 
+<<<<<<< HEAD
     def init = { servletContext ->
 
       def user1 = new org.mt.User(
@@ -16,26 +17,37 @@ class BootStrap {
       if (!user1.save()) {
           user1.errors.allErrors.each {
           print it
+=======
+class BootStrap {
+  def init = { servletContext ->
+    def user = new User(
+      username:"me@gmail.com",
+      password:"123",
+      email:"me@gmail.com",
+      fullName:"Arnulfo Rolando Blandon"
+    )
+
+    if (!user.save()) {
+      user.errors.allErrors.each { error ->
+        log.error "[$error.field: $error.defaultMessage]"
+>>>>>>> 20bbe814b9dcb2f223c5eb638a22a1a1fa309e15
       }
-
-      }else{
-        user1.save()
-      }
-
-      def rolAdmin = new org.mt.Role(authority:"ROLE_ADMIN")
-      rolAdmin.save()
-
-      def rolUser = new org.mt.Role(authority:"ROLE_USER")
-      rolUser.save()
-
-      def rolSupervisor = new org.mt.Role(authority:"ROLE_SUPERVISOR")
-      rolSupervisor.save()
-
-      def userRole1 = new org.mt.UserRole(user:user1, role:rolAdmin)
-      userRole1.save()
     }
-    
-    def destroy = {
 
-    }
+    assert User.count() == 1
+
+    def adminRole = new Role(authority:"ROLE_ADMIN").save()
+    new Role(authority:"ROLE_USER").save()
+    new Role(authority:"ROLE_SUPERVISOR").save()
+
+    assert Role.count() == 3
+
+    UserRole.create user, adminRole, true
+
+    assert UserRole.count() == 1
+  }
+  
+  def destroy = {
+
+  }
 }
